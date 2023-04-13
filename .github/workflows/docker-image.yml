@@ -8,9 +8,6 @@ on:
   pull_request:
     branches: [ "master" ]
     
-env:
-  DOCKER_REG: brconn98
-
 jobs:
 
   bld-and-push:
