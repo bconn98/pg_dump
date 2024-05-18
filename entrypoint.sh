@@ -2,6 +2,9 @@
 # entrypoint.sh
 set -e
 
+crond
+su - ${PGUSER}
+
 if [[ -z $COMMAND ]];
 then
    COMMAND=${1:-dump-cron}
@@ -92,8 +95,6 @@ elif [[ "${COMMAND}" == 'dump-cron' ]]; then
     fi
 
     echo -e "$CRON_ENV\n$CRON_SCHEDULE /dump.sh > $LOGFIFO 2>&1" | crontab -
-    # crontab -l
-    cron
 
     if [[ "${RUN_DOUBLE}" == "false" ]];
     then
